@@ -1,0 +1,18 @@
+{
+  "name": "t5-middleware-error",
+  "version": "1.0.0",
+  "description": "API Kantin - Tugas 5 PWL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "joi": "^17.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

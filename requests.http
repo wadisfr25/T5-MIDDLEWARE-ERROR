@@ -1,0 +1,82 @@
+@baseUrl = http://localhost:3000
+@apiKey = kunci-rahasia-kantin
+
+### 1. GET daftar menu
+GET {{baseUrl}}/menu
+
+### 2. GET daftar dengan filter kategori
+GET {{baseUrl}}/menu?kategori=minuman
+
+### 3. GET detail yang ada
+GET {{baseUrl}}/menu/1
+
+### 4. GET detail tidak ada (404 NOT_FOUND)
+GET {{baseUrl}}/menu/999
+
+### 5. URL tidak dikenal (404 ROUTE_NOT_FOUND)
+GET {{baseUrl}}/tidak-ada
+
+### 6. POST berhasil (201)
+POST {{baseUrl}}/menu
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "nama": "Sate Ayam",
+  "harga": 20000,
+  "kategori": "makanan",
+  "tersedia": true
+}
+
+### 7. POST tanpa API key (401)
+POST {{baseUrl}}/menu
+Content-Type: application/json
+
+{
+  "nama": "Kopi Susu",
+  "harga": 12000,
+  "kategori": "minuman"
+}
+
+### 8. POST validasi gagal (422, semua kesalahan)
+POST {{baseUrl}}/menu
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "nama": "Es",
+  "harga": 500,
+  "kategori": "jus",
+  "tersedia": "iya"
+}
+
+### 9. POST nama duplikat (409)
+POST {{baseUrl}}/menu
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "nama": "nasi goreng",
+  "harga": 18000,
+  "kategori": "makanan"
+}
+
+### 10. PUT bonus berhasil (200)
+PUT {{baseUrl}}/menu/3
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "nama": "Roti Bakar Cokelat",
+  "harga": 13000,
+  "kategori": "camilan",
+  "tersedia": true
+}
+
+### 11. DELETE berhasil (204)
+DELETE {{baseUrl}}/menu/5
+x-api-key: {{apiKey}}
+
+### 12. DELETE id tidak ada (404)
+DELETE {{baseUrl}}/menu/999
+x-api-key: {{apiKey}}
